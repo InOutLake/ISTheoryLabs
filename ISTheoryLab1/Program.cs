@@ -71,18 +71,25 @@ namespace ISTheoryLab1
                         int balance = 0;
                         bool isAdmin = false;
                         Console.WriteLine("Adimin (0 - false, 1 - true:");
-                        switch (Console.ReadLine())
+                        try
                         {
-                            case "1":
-                                isAdmin = true;
-                                break;
-                            case "2":
-                                isAdmin = false;
-                                break;
+                            switch (Console.ReadLine())
+                            {
+                                case "1":
+                                    isAdmin = true;
+                                    break;
+                                case "2":
+                                    isAdmin = false;
+                                    break;
+                            }
+                            Player newPlayer = new Player(login, password, race, gClass, guild, level, balance, isAdmin);
+                            allPlayers.Add(newPlayer);
+                            Console.WriteLine($"Added new player:\n {newPlayer.ToString()}");
                         }
-                        Player newPlayer = new Player(login, password, race, gClass, guild, level, balance, isAdmin);
-                        allPlayers.Add(newPlayer);
-                        Console.WriteLine($"Added new player:\n {newPlayer.ToString()}");
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Wrong input! Interrupting creation...");
+                        }
                         break;
                     case 4:
                         Console.Write("Login: ");
