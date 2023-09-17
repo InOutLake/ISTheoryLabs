@@ -1,0 +1,6 @@
+Login,Password,Race,GClass,Guild,Level,Balance,IsAdmin
+braveknight123,shielded4life,Human,Warrior,Knights of Valor,35,2500,false
+elvenmage87,arcaneMaster2022,Elf,Mage,Mystic Alliance,28,1800,false
+dwarvenhammer,forgePaladin,Dwarf,Paladin,Guardians of Light,42,3500,false
+fearsomeorc,berserkerRage,Orc,Barbarian,Bloodrage Clan,30,2000,false
+adminmaster,adminPass123,Human,Administrator,Admins United,50,10000,true
