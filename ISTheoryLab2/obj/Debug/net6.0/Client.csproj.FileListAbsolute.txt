@@ -1,0 +1,4 @@
+C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\obj\Debug\net6.0\Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\obj\Debug\net6.0\Client.AssemblyInfoInputs.cache
+C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\obj\Debug\net6.0\Client.AssemblyInfo.cs
+C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\obj\Debug\net6.0\Client.csproj.CoreCompileInputs.cache
