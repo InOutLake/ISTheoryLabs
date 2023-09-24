@@ -7,10 +7,10 @@ namespace ISTheoryLab1
     {
         public static void Main(string[] args)
         {
-            string tmp = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data.csv";
+            string tmp = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Data.csv"; //path to config.ini
             List<Player> allPlayers = CSVEdtior.ReadPlayers(tmp);
 
-            int inp = 5;
+            int inp = 5; //switch on key
             const string MESSAGE = "\nAvailable commands:\n1 - All Players;\n2 - Player by login\n3 - Add Player\n4 - Delete Player\n0 - Save and Exit\n\nEnter action code: ";
             string HEADER = "Login".PadRight(20) + "Password".PadRight(20) + "Race".PadRight(10) +
                             "Calss".PadRight(15) + "Guild".PadRight(25) + "LVL".PadRight(5) +
@@ -20,7 +20,7 @@ namespace ISTheoryLab1
                 Console.WriteLine(MESSAGE);
                 try
                 {
-                    inp = int.Parse(Console.ReadLine());
+                    inp = int.Parse(Console.ReadLine()); 
                     if (inp > 4 || inp < 0)
                     {
                         throw new Exception();
@@ -44,7 +44,7 @@ namespace ISTheoryLab1
                         }
                         break;
                     case 2:
-                        Console.Write("Enter Player's login: ");
+                        Console.Write("Enter Player's login: "); //
                         login = Console.ReadLine();
                         try
                         {
@@ -76,7 +76,7 @@ namespace ISTheoryLab1
                             switch (Console.ReadLine())
                             {
                                 case "1":
-                                    isAdmin = true;
+                                    isAdmin = true; //ternar operator
                                     break;
                                 case "2":
                                     isAdmin = false;
@@ -107,7 +107,7 @@ namespace ISTheoryLab1
                 }
             }
             CSVEdtior.WritePlayers(tmp, allPlayers);
-            Console.WriteLine("Thanks for using our player manager!");
+            Console.WriteLine("Thanks for using our player manager!"); //client requests a string and fill it in the gaps
         }
     }
 }
