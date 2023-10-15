@@ -1,0 +1,14 @@
+C:\Users\Maxim\source\repos\ISTheoryLabs\UDPtest\bin\Debug\net6.0\TestClient.exe
+C:\Users\Maxim\source\repos\ISTheoryLabs\UDPtest\bin\Debug\net6.0\TestClient.deps.json
+C:\Users\Maxim\source\repos\ISTheoryLabs\UDPtest\bin\Debug\net6.0\TestClient.runtimeconfig.json
+C:\Users\Maxim\source\repos\ISTheoryLabs\UDPtest\bin\Debug\net6.0\TestClient.dll
+C:\Users\Maxim\source\repos\ISTheoryLabs\UDPtest\bin\Debug\net6.0\TestClient.pdb
+C:\Users\Maxim\source\repos\ISTheoryLabs\UDPtest\obj\Debug\net6.0\TestClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Maxim\source\repos\ISTheoryLabs\UDPtest\obj\Debug\net6.0\TestClient.AssemblyInfoInputs.cache
+C:\Users\Maxim\source\repos\ISTheoryLabs\UDPtest\obj\Debug\net6.0\TestClient.AssemblyInfo.cs
+C:\Users\Maxim\source\repos\ISTheoryLabs\UDPtest\obj\Debug\net6.0\TestClient.csproj.CoreCompileInputs.cache
+C:\Users\Maxim\source\repos\ISTheoryLabs\UDPtest\obj\Debug\net6.0\TestClient.dll
+C:\Users\Maxim\source\repos\ISTheoryLabs\UDPtest\obj\Debug\net6.0\refint\TestClient.dll
+C:\Users\Maxim\source\repos\ISTheoryLabs\UDPtest\obj\Debug\net6.0\TestClient.pdb
+C:\Users\Maxim\source\repos\ISTheoryLabs\UDPtest\obj\Debug\net6.0\TestClient.genruntimeconfig.cache
+C:\Users\Maxim\source\repos\ISTheoryLabs\UDPtest\obj\Debug\net6.0\ref\TestClient.dll

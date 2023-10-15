@@ -1,4 +1,3 @@
-C:\Users\Maxim\source\repos\ISTheoryLabs\CSLab1\obj\Debug\net6.0\CSLab1.csproj.AssemblyReference.cache
 C:\Users\Maxim\source\repos\ISTheoryLabs\CSLab1\obj\Debug\net6.0\CSLab1.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Maxim\source\repos\ISTheoryLabs\CSLab1\obj\Debug\net6.0\CSLab1.AssemblyInfoInputs.cache
 C:\Users\Maxim\source\repos\ISTheoryLabs\CSLab1\obj\Debug\net6.0\CSLab1.AssemblyInfo.cs

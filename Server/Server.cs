@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Net;
 using System.Net.Sockets;
-using System.Net;
+using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using System.Reflection.PortableExecutable;
-using System.Diagnostics.Metrics;
 
 namespace Server
 {
@@ -15,166 +10,172 @@ namespace Server
         string COMMANDSINFO = "\nAvailable commands:\n1 - All Players;\n2 - Player by login\n3 - Add Player\n4 - Delete Player\n0 - Save and Exit\n\nEnter action code: ";
         string HEADER = "\nLogin".PadRight(20) + "Password".PadRight(20) + "Race".PadRight(10) +
                         "Calss".PadRight(15) + "Guild".PadRight(25) + "LVL".PadRight(5) +
-                        "Balance".PadRight(9) + "Admin".PadRight(5) + "\n"; //q place to store
+                        "Balance".PadRight(9) + "Admin".PadRight(5) + "\n";
+
+        const int CLIENTPORT = 8081;
+        const int SERVERPORT = 8080;
+        IPAddress IPADDRESS = IPAddress.Parse("127.0.0.1");
+        IPEndPoint serverEP;
+        IPEndPoint clientEP;
 
         string tmp;
         List<Player> allPlayers;
-        IPAddress ipAddress;
-        int port;
-        TcpListener listener;
-        TcpClient client;
-        NetworkStream stream;
+        UdpClient serverReceiver;
+        UdpClient serverSender;
 
-        public void Init()
-        {
-            tmp = File.ReadAllLines(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\config.ini")[0].Remove(0, 12);
-            allPlayers = CSVEdtior.ReadPlayers(tmp);
-            ipAddress = IPAddress.Any;
-            port = 12345;
-            listener = new TcpListener(ipAddress, port);
-            listener.Start();
-            client = new TcpClient();
-            Console.WriteLine("Waiting for client...");
-        }
-        public void SaveData()
-        {
-            CSVEdtior.WritePlayers(tmp, allPlayers);
-        }
-        public void OnClientClose()
-        {
-            SaveData();
-            Console.WriteLine("Client disconnected... waiting for connection...");
-            client = listener.AcceptTcpClient();
-            Console.WriteLine("Client connected... process to main func");
-            stream = client.GetStream();
-        }
-        public void ShutDown()
-        {
-            SaveData();
-        }
+        string recieved;
+        string toSend;
 
         public Server()
         {
-            this.Init();
+            tmp = File.ReadAllLines(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\config.ini")[0].Remove(0, 12);
+            allPlayers = CSVEdtior.ReadPlayers(tmp);
+            serverEP = new IPEndPoint(IPADDRESS, SERVERPORT);
+            clientEP = new IPEndPoint(IPADDRESS, CLIENTPORT);
+            serverReceiver = new UdpClient(serverEP);
+            serverSender = new UdpClient();
         }
 
-        public ConsoleKeyInfo ReadKeyInfoFromStream()
+
+        async Task SendMessageAsync()
         {
-            byte[] data = new byte[4096];
-            int bytesRead = stream.Read(data, 0, data.Length);
-            return Serializer.DeserializeConsoleKeyInfo(data);
+            while (true)
+            {
+                if (toSend != "wait")
+                {
+                    byte[] data = Encoding.UTF8.GetBytes(toSend);
+                    await serverSender.SendAsync(data, clientEP);
+                    Console.WriteLine($"SEND: {toSend}");
+                    toSend = "wait";
+                }
+            }
         }
 
-        public string ReadStringFromStream()
+        async Task ReceiveMessageAsync()
         {
-            byte[] buffer = new byte[4096];
-            int bytesRead = stream.Read(buffer, 0, buffer.Length);
-            return Encoding.ASCII.GetString(buffer, 0, bytesRead);
+            while (true)
+            {
+                var result = await serverReceiver.ReceiveAsync();
+                recieved = Encoding.UTF8.GetString(result.Buffer);
+                Console.WriteLine($"RECIEVED: {recieved}");
+            }
         }
 
-        public void SendCommandsInfo()
+        public void sendWhenReady(string s)
         {
-            SendStringToClient(COMMANDSINFO);
+            bool isSent = false;
+            while (!isSent)
+            {
+                toSend = s;
+                isSent = true;
+            }
+        }
+        public void WriteOnClient(string s)
+        {
+            sendWhenReady("w" + s);
         }
 
-        public void SendStringToClient(string s)
+        public async Task<ConsoleKeyInfo> ReadKeyInfoFromClient()
         {
-            byte[] responseBytes = Encoding.ASCII.GetBytes(s);
-            stream.Write(responseBytes, 0, responseBytes.Length);
+            UdpReceiveResult receivedData = new UdpReceiveResult();
+            while (receivedData.Buffer == null) {
+                try
+                {
+                    receivedData = await serverReceiver.ReceiveAsync();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+            char keyChar = Convert.ToChar(receivedData.Buffer[0]);
+            Console.WriteLine($"Key {keyChar} has been received from client {clientEP}!");
+            return new ConsoleKeyInfo(keyChar, (ConsoleKey)keyChar, false, false, false);
         }
 
-        public void SendAllPlayers()
+        //public async Task SendPlayerByLogin()
+        //{
+        //    string login = await RequestStringWithMessage("Enter Player's login: ");
+        //    Player p = allPlayers.Find(x => x.Login == login);
+        //    await SendStringToClient($"{HEADER}\n{p.ToString()}");
+        //}
+
+        //public async Task AddNewPlayer(IPEndPoint clientEP)
+        //{
+        //    string login = await RequestStringWithMessage("\nLogin: ");
+        //    string password = await RequestStringWithMessage("Password: ");
+        //    string race = await RequestStringWithMessage("Race: ");
+        //    string gClass = await RequestStringWithMessage("Class: ");
+        //    string guild = await RequestStringWithMessage("Guild: ");
+        //    int level = 0;
+        //    int balance = 0;
+        //    bool isAdmin = false;
+        //
+        //    try
+        //    {
+        //        isAdmin = await RequestStringWithMessage("Admin (0 - false, 1 - true):") == "1" ? true : false;
+        //        Player newPlayer = new Player(login, password, race, gClass, guild, level, balance, isAdmin);
+        //        allPlayers.Add(newPlayer);
+        //        await SendStringToClient($"Added new player:\n {newPlayer.ToString()}");
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine("Wrong input! Interrupting creation...");
+        //        await SendStringToClient("Wrong input! Interrupting creation...");
+        //    }
+        //}
+        //
+        //public async Task RemovePlayerByLogin(IPEndPoint clientEP)
+        //{
+        //    string login = await RequestStringWithMessage("Enter Player's login: ");
+        //    allPlayers.RemoveAll(x => x.Login == login);
+        //    await SendStringToClient($"{login}'s profile has been deleted >:D");
+        //}
+
+        public void WriteCommandsInfo()
         {
-            string send = "";
+            WriteOnClient(COMMANDSINFO);
+        }
+
+        public void WriteAllPlayers()
+        {
+            string stringToSend = "";
             foreach (Player p in allPlayers)
             {
-                send += p.ToString() + "\n";
+                stringToSend += p.ToString() + "\n";
             }
-            SendStringToClient(send);
-        }
-        public void SendPlayerByLogin()
-        {
-            SendStringToClient("Enter Player's login: ");
-            string login = ReadStringFromStream();
-            Player p = allPlayers.Find(x => x.Login == login);
-            SendStringToClient($"{HEADER}\n{p.ToString()}");
+            WriteOnClient(stringToSend);
         }
 
-        public void AddNewPlayer()
+        public void ServerMain()
         {
-            SendStringToClient("\nLogin: ");
-            string login = ReadStringFromStream();
-            SendStringToClient("Password: ");
-            string password = ReadStringFromStream();
-            SendStringToClient("Race: ");
-            string race = ReadStringFromStream();
-            SendStringToClient("Class: ");
-            string gClass = ReadStringFromStream();
-            SendStringToClient("Guild: ");
-            string guild = ReadStringFromStream();
-            int level = 0;
-            int balance = 0;
-            bool isAdmin = false;
-            SendStringToClient("Adimin (0 - false, 1 - true:");
-            try
+            Task.Run(ReceiveMessageAsync);
+            Task.Run(SendMessageAsync);
+            
+            while (true)
             {
-                isAdmin = ReadStringFromStream() == "1" ? true : false;
-                Player newPlayer = new Player(login, password, race, gClass, guild, level, balance, isAdmin);
-                allPlayers.Add(newPlayer);
-                SendStringToClient($"Added new player:\n {newPlayer.ToString()}");
+                WriteCommandsInfo();
+                //ConsoleKeyInfo command = await RequestKey();
+                //
+                //switch (command.Key)
+                //{
+                //    case ConsoleKey.D1:
+                //        await SendAllPlayers();
+                //        break;
+                //    case ConsoleKey.D2:
+                //        await SendPlayerByLogin();
+                //        break;
+                //    case ConsoleKey.D3:
+                //        await AddNewPlayer(clientEP);
+                //        break;
+                //    case ConsoleKey.D4:
+                //        await RemovePlayerByLogin(clientEP);
+                //        break;
+                //    case ConsoleKey.Escape:
+                //        OnClientClose();
+                //        break;
+                //}
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("Wrong input! Interrupting creation...");
-            }
-        }
-
-
-        public void RemovePlayerByLogin()
-        {
-            SendStringToClient("Enter Player's login: ");
-            string login = ReadStringFromStream();
-            allPlayers.RemoveAll(x => x.Login == login);
-            SendStringToClient($"{login}'s profile has been deleted >:D");
-        }
-
-        public void Main()
-        {
-            ConsoleKeyInfo command = new ConsoleKeyInfo();
-            bool shutDown = false;
-            Console.WriteLine("Client connected... process to main processing");
-
-            while (!shutDown)
-            {
-                if (client.Connected)
-                {
-                    SendCommandsInfo();
-                    command = ReadKeyInfoFromStream();
-                    switch (command.Key)
-                    {
-                        case ConsoleKey.D1:
-                            SendAllPlayers();
-                            break;
-                        case ConsoleKey.D2:
-                            SendPlayerByLogin();
-                            break;
-                        case ConsoleKey.D3:
-                            AddNewPlayer();
-                            break;
-                        case ConsoleKey.D4:
-                            RemovePlayerByLogin();
-                            break;
-                        case ConsoleKey.Escape:
-                            OnClientClose();
-                            break;
-                    }
-                }
-                else
-                {
-                    OnClientClose();
-                }
-            }
-            SaveData();
         }
     }
 }

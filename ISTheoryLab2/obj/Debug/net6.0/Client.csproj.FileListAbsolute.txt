@@ -2,3 +2,13 @@ C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\obj\Debug\net6.0\Client.Ge
 C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\obj\Debug\net6.0\Client.AssemblyInfoInputs.cache
 C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\obj\Debug\net6.0\Client.AssemblyInfo.cs
 C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\obj\Debug\net6.0\Client.csproj.CoreCompileInputs.cache
+C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\bin\Debug\net6.0\Client.exe
+C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\bin\Debug\net6.0\Client.deps.json
+C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\bin\Debug\net6.0\Client.runtimeconfig.json
+C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\bin\Debug\net6.0\Client.dll
+C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\bin\Debug\net6.0\Client.pdb
+C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\obj\Debug\net6.0\Client.dll
+C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\obj\Debug\net6.0\refint\Client.dll
+C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\obj\Debug\net6.0\Client.pdb
+C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\obj\Debug\net6.0\Client.genruntimeconfig.cache
+C:\Users\Maxim\source\repos\ISTheoryLabs\ISTheoryLab2\obj\Debug\net6.0\ref\Client.dll

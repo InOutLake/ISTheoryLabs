@@ -16,7 +16,7 @@ namespace Server
         public static void Main(string[] args)
         {
             Server server = new Server();
-            server.Main();
+            server.ServerMain();
         }
     }
 }

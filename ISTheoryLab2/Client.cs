@@ -1,70 +1,102 @@
-﻿using System;
-using System.ComponentModel.Design;
+﻿using System.Net;
 using System.Net.Sockets;
-using System.Runtime.CompilerServices;
 using System.Text;
-
 
 namespace Client
 {
     class Client
     {
-        TcpClient client;
-        NetworkStream stream;
-        public Client()
-        {
-            Init();
-        }
-        public void Init()
-        {
-            client = new TcpClient();
-            client.Connect("localhost", 8080);
-            stream = client.GetStream();
-        }
-        public string readStringFromStream()
-        {
-            byte[] buffer = new byte[4096];
-            int bytesRead = stream.Read(buffer, 0, buffer.Length);
-            return Encoding.ASCII.GetString(buffer, 0, bytesRead);
-        }
-        public void SendKeyInfoToServer(ConsoleKeyInfo keyInfo)
-        {
-            byte[] data = Serializer.SerializeConsoleKeyInfo(keyInfo);
-            stream.Write(data, 0, data.Length);
-        }
-        public void SendStringToServer(string s)
-        {
-            byte[] sBytes = Encoding.ASCII.GetBytes(s);
-            stream.Write(sBytes, 0, sBytes.Length);
-        }
+        UdpClient clientReciever;
+        UdpClient clientSender;
+        IPEndPoint serverEP;
+        IPEndPoint clientEP;
+        const int CLIENTPORT = 8081;
+        const int SERVERPORT = 8080;
+        IPAddress IPADDRESS = IPAddress.Parse("127.0.0.1");
 
-        public string getRespondType()
-        {
-            return readStringFromStream();
-        }
+        string recieved;
+        string toSend;
+        string responseType;
 
-        public void respondOnStringRequest() //TODO add input message show
+
+
+        async Task SendMessageAsync()
         {
-            Console.WriteLine(readStringFromStream());
-            SendStringToServer(Console.ReadLine());
-        }
-        public void respondOnKeyInfoRequest()
-        {
-            SendKeyInfoToServer(Console.ReadKey());
-        }
-        public void Main(string[] args)
-        {
-            string respondType;
             while (true)
             {
-                respondType = getRespondType();
-                if (respondType == "key")
+                if (toSend != "wait")
                 {
-                    respondOnKeyInfoRequest();
+                    byte[] data = Encoding.UTF8.GetBytes(toSend);
+                    await clientSender.SendAsync(data, serverEP);
+                    toSend = "wait";
                 }
-                else
+            }
+        }
+
+        async Task ReceiveMessageAsync()
+        {
+            while (true)
+            {
+                string result = Encoding.UTF8.GetString((await clientReciever.ReceiveAsync()).Buffer);
+            }
+        }
+
+        string getResponceType(char b)
+        {
+            switch (b) 
+            {
+                case 'w':
+                    return "write";
+                case 's':
+                    return "strng";
+                case 'k':
+                    return "key";
+            }
+            return "wait";
+        }
+
+        public Client()
+        {
+            serverEP = new IPEndPoint(IPADDRESS, SERVERPORT);
+            clientEP = new IPEndPoint(IPADDRESS, CLIENTPORT);
+            clientReciever = new UdpClient(clientEP);
+            clientSender = new UdpClient();
+        }
+
+        public async Task<string> ReadStringFromServer()
+        {
+            byte[] receivedData = clientReciever.Receive(ref clientEP);
+            return Encoding.ASCII.GetString(receivedData);
+        }
+
+        public async Task SendStringToServer(string message)
+        {
+            byte[] data = Encoding.ASCII.GetBytes(message);
+            clientSender.Send(data, data.Length, serverEP);
+        }
+
+        public void ClientMain()
+        {
+            Task.Run(ReceiveMessageAsync);
+            Task.Run(SendMessageAsync);
+
+            while (true)
+            {
+                if (responseType.Equals("key"))
                 {
-                    respondOnStringRequest();
+                    ConsoleKeyInfo keyInfo = Console.ReadKey();
+                    toSend = keyInfo.KeyChar.ToString();
+                    responseType = "wait";
+                }
+                else if (responseType == "string")
+                {
+                    toSend = Console.ReadLine();
+                    responseType = "wait";
+                }
+                else if (responseType == "write")
+                {
+                    Console.WriteLine(recieved);
+                    responseType = "wait";
                 }
             }
         }
