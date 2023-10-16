@@ -1,0 +1,92 @@
+2023-10-16 13:03:47.4609|Info|SEND: 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+0 - Save and Exit
+
+Enter action code:  | 
+2023-10-16 13:03:47.4767|Info|SEND: 3 | 
+2023-10-16 13:07:24.8664|Info|SEND: 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+0 - Save and Exit
+
+Enter action code:  | 
+2023-10-16 13:07:24.9139|Info|SEND: 3 | 
+2023-10-16 13:12:37.7690|Info|SEND: 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+0 - Save and Exit
+
+Enter action code:  | 
+2023-10-16 13:12:37.8358|Info|SEND: 3 | 
+2023-10-16 13:12:41.3026|Info|RECEIVED: 31 | 
+2023-10-16 13:12:41.3026|Info|SEND: 1braveknight123      shielded4life       Human     Warrior        Knights of Valor         35   2500     False
+elvenmage87         arcaneMaster2022    Elf       Mage           Mystic Alliance          28   1800     False
+dwarvenhammer       forgePaladin        Dwarf     Paladin        Guardians of Light       42   3500     False
+fearsomeorc         berserkerRage       Orc       Barbarian      Bloodrage Clan           30   2000     False
+adminmaster         adminPass123        Human     Administrator  Admins United            50   10000    True 
+player1             pass123             Elf       Ranger         Forest Guardians         20   1500     False
+sorcererwizard      magicPower99        Human     Wizard         Order of the Arcane      38   2800     False
+steelsmith76        forgeMaster         Dwarf     Blacksmith     Hammerfall Clan          45   4000     False
+shadowrogue         stealthyNinja       Human     Rogue          Shadow Syndicate         32   2200     False
+fierydragon         dragonlord123       Dragon    Dragonlord     Flame Reavers            55   8000     False
+naturedruid         earthpower234       Elf       Druid          Nature's Embrace         27   1700     False
+icequeenFrost       iceMagic456         Human     Sorcerer       Chillblades Coven        40   3200     False
+mightyminotaur      axeCrusher          Minoaur   Warrior        Minotaur's Might         36   2600     False
+undeadwarlock       darksummoner789     Undead    Warlock        Shadow Legion            48   6000     False
+thechosenone        destinyCalls12      Human     Hero           Heroes of Destiny        60   12000    False
+moshnetravnyh       pswdnotforuse       Undead    Necromancer    Grip from the rip        0    0        False
+Login               Login               Login     Login          Login                    0    0        False
+ | 
+2023-10-16 13:12:41.3026|Info|SEND: 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+0 - Save and Exit
+
+Enter action code:  | 
+2023-10-16 13:12:41.3026|Info|SEND: 3 | 
+2023-10-16 13:12:42.5229|Info|RECEIVED: 32 | 
+2023-10-16 13:12:42.5229|Info|SEND: 1Enter player's login:  | 
+2023-10-16 13:12:42.5229|Info|SEND: 2 | 
+2023-10-16 13:12:52.2341|Info|RECEIVED: 2steelsmith76 | 
+2023-10-16 13:12:52.2341|Info|SEND: 1steelsmith76        forgeMaster         Dwarf     Blacksmith     Hammerfall Clan          45   4000     False | 
+2023-10-16 13:12:52.2341|Info|SEND: 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+0 - Save and Exit
+
+Enter action code:  | 
+2023-10-16 13:12:52.2341|Info|SEND: 3 | 
+2023-10-16 13:12:57.8880|Info|RECEIVED: 34 | 
+2023-10-16 13:12:57.8880|Info|SEND: 1Enter player's login:  | 
+2023-10-16 13:12:57.8880|Info|SEND: 2 | 
+2023-10-16 13:13:00.4077|Info|RECEIVED: 2Login | 
+2023-10-16 13:13:00.4077|Info|SEND: 1Player with login Login has been removed | 
+2023-10-16 13:13:00.4077|Info|Removed player: Login | 
+2023-10-16 13:13:00.4077|Info|SEND: 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+0 - Save and Exit
+
+Enter action code:  | 
+2023-10-16 13:13:00.4077|Info|SEND: 3 | 
+2023-10-16 13:13:02.7805|Info|RECEIVED: 36 | 
+2023-10-16 13:13:02.7805|Info|Shut down | 

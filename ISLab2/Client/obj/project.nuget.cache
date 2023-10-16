@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "n5DjIO3QmpVTOvnFkTCIoj3SRioM9ruWYpRVp5Hm0oMuQhoBF4rMnl7VARZgsjzcCP3I6ckfsZawstqsPldnqw==",
+  "dgSpecHash": "0x8xDOBmnprE/9003qV18j/YnmKwQbjnW0O1q/hgR8owKrX5UVOtGsGgQ5x5uxj9h5IYHUw/epGNUPIitVnOYg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Maxim\\source\\repos\\ISTheoryLabs\\ISLab2\\Client\\Client.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Maxim\\.nuget\\packages\\nlog\\5.2.5\\nlog.5.2.5.nupkg.sha512"
+  ],
   "logs": []
 }

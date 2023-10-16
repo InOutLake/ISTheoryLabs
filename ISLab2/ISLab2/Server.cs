@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -27,7 +28,9 @@ namespace Server
         UdpClient serverReceiver;
         UdpClient serverSender;
 
-        volatile string messageRecieved;
+        Logger logger;
+
+        volatile string messageReceived;
 
         public Server()
         {
@@ -37,14 +40,16 @@ namespace Server
             clientEP = new IPEndPoint(IPADDRESS, CLIENTPORT);
             serverReceiver = new UdpClient(serverEP);
             serverSender = new UdpClient();
-            messageRecieved = "wait";
+            logger = NLog.LogManager.GetCurrentClassLogger();
+            messageReceived = "wait";
         }
 
         void SendMessage(string s)
         {
             byte[] data = Encoding.UTF8.GetBytes(s);
             serverSender.SendAsync(data, clientEP);
-            Console.WriteLine($"SEND: {s}");
+            logger.Info($"SEND: {s}");
+            //Console.WriteLine($"SEND: {s}");
         }
 
         async Task ReceiveMessageAsync()
@@ -52,36 +57,38 @@ namespace Server
             while (true)
             {
                 var result = await serverReceiver.ReceiveAsync();
-                messageRecieved = Encoding.UTF8.GetString(result.Buffer);
-                Console.WriteLine($"Recieved: {messageRecieved}");
+                messageReceived = Encoding.UTF8.GetString(result.Buffer);
+                logger.Info($"RECEIVED: {messageReceived}");
+                //Console.WriteLine($"Recieved: {messageRecieved}");
             }
         }
 
         string RecieveKey()
         {
-            if (messageRecieved[0] != '3'){ return "wait"; }
-            messageRecieved = "wait";
-            return messageRecieved.Substring(1);
+            while (messageReceived[0] != '3'){}
+            return messageReceived.Substring(1);
+        }
+
+        string RecieveString()
+        {
+            while (messageReceived[0] != '2') {}
+            return messageReceived.Substring(1);
         }
 
         void RequestStringFromClient(string message)
         {
-            SendMessage("2" +  message);
+            messageReceived = "wait";
+            DisplayOnClient(message);
+            SendMessage("2");
         }
         void RequestKeyFromClient(string message)
         {
-            WriteOnClient(message);
+            DisplayOnClient(message);
             SendMessage("3");
         }
-        void WriteOnClient(string message)
+        void DisplayOnClient(string message)
         {
             SendMessage("1" + message);
-        }
-
-
-        void SendCommandsInfo()
-        {
-            SendMessage(COMMANDSINFO);
         }
 
         void SendAllPlayersInfo()
@@ -91,7 +98,62 @@ namespace Server
             {
                 stringToSend += p.ToString() + "\n";
             }
-            WriteOnClient(stringToSend);
+            DisplayOnClient(stringToSend);
+            messageReceived = "wait";
+        }
+
+        void SendPlayerInfoByLogin()
+        {
+            RequestStringFromClient("Enter player's login: ");
+            string login = RecieveString();
+            foreach(Player p in allPlayers)
+            {
+                if (p.Login == login) DisplayOnClient(p.ToString());
+            }
+        }
+
+        void AddPlayer()
+        {
+            RequestStringFromClient("Enter login: ");
+            string login = RecieveString();
+
+            RequestStringFromClient("Enter Password: ");
+            string password = RecieveString();
+
+            RequestStringFromClient("Enter race: ");
+            string race = RecieveString();
+
+            RequestStringFromClient("Enter class: ");
+            string gClass = RecieveString();
+
+            RequestStringFromClient("Enter guild: ");
+            string guild = RecieveString();
+            int level = 0;
+            int balance = 0;
+
+            RequestStringFromClient("Is player admin? y - yes / n - no");
+            bool isAdmin = RecieveString() == "y" ? true : false;
+
+            Player newPlayer = new Player(login, password, race, gClass, guild, level, balance, isAdmin);
+            allPlayers.Add(newPlayer);
+            logger.Info("Added player: " + newPlayer.ToString());
+
+            DisplayOnClient("Player has been successfully created!");
+        }
+
+        void DeletePlayerByLogin()
+        {
+            RequestStringFromClient("Enter player's login: ");
+            string toDelete = RecieveString();
+            if (allPlayers.RemoveAll(x => x.Login == toDelete) > 0)
+            {
+                DisplayOnClient($"Player with login {toDelete} has been removed");
+                logger.Info("Removed player: " + toDelete);
+            }
+            else
+            {
+                DisplayOnClient($"Player with login {toDelete} was not found");
+            }
         }
 
         public void ServerMain()
@@ -103,21 +165,36 @@ namespace Server
             while (!quit)
             {
                 RequestKeyFromClient(COMMANDSINFO);
-                //string command = "wait";
-                //while (command == "wait")
-                //{
-                //    command = RecieveKey();
-                //};
-                Console.ReadLine();
-                switch(messageRecieved[0])
+                string command = "wait";
+                while (command == "wait")
+                {
+                    command = RecieveKey();
+                };
+                switch(messageReceived[1])
                 {
                     case '1':
                         SendAllPlayersInfo();
                         break;
+                    case '2':
+                        SendPlayerInfoByLogin();
+                        break;
+                    case '3':
+                        AddPlayer();
+                        break;
+                    case '4':
+                        DeletePlayerByLogin();
+                        break;
                     case '5':
+                        CSVEdtior.WritePlayers(tmp, allPlayers);
+                        logger.Info("Changes pushed");
+                        break;
+                    case '6':
+                        quit = true;
                         break;
                 }
             }
+            CSVEdtior.WritePlayers(tmp, allPlayers);
+            logger.Info("Shut down");
         }
     }
 }

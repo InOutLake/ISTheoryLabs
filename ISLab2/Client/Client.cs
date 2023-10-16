@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -19,10 +20,9 @@ namespace Client
         UdpClient clientReceiver;
         UdpClient clientSender;
 
-        volatile string messageToSend;
         volatile string messageRecieved;
+        Logger logger;
 
-        volatile Command command;
 
         public Client()
         {
@@ -33,21 +33,23 @@ namespace Client
 
             messageRecieved = "wait";
 
-            command = Command.wait;
+            logger = NLog.LogManager.GetCurrentClassLogger();
         }
 
         void SendMessage(string message)
         {
             byte[] data = Encoding.UTF8.GetBytes(message);
             clientSender.Send(data, serverEP);
-            Console.WriteLine($"SEND: {message}");
+            logger.Info("SEND" + message);
+            //Console.WriteLine($"SEND: {message}");
         }
 
         string ReceiveMessage()
         {
-            var result = clientReceiver.Receive(ref serverEP);
+            var result = clientReceiver.Receive(ref clientEP);
             messageRecieved = Encoding.UTF8.GetString(result);
-            Console.WriteLine($"Recieved: {messageRecieved}");
+            logger.Info("RECEIVED" + messageRecieved);
+            //Console.WriteLine($"Recieved: {messageRecieved}");
             return messageRecieved;
         }
 
@@ -56,7 +58,7 @@ namespace Client
             
             if (pressedKeyChar == (char)27)
             {
-                SendMessage("3esc");
+                SendMessage("36");
             }
             else
             {
@@ -64,17 +66,23 @@ namespace Client
             }
         }
 
-        void RespondToKeyRequest(string messageFromServer)
+        void RespondToKeyRequest()
         {
             char pressedKeyChar = Console.ReadKey().KeyChar;
             SendKey(pressedKeyChar);
         }
 
+        void RespondToStringRequest()
+        {
+            SendMessage('2' + Console.ReadLine());
+        }
+
         public async void ClientMain()
         {
             Console.WriteLine("Started client...");
-
-            while (true)
+            
+            bool quit = false;
+            while (!quit)
             {
                 string recievedMessage = ReceiveMessage();
                 switch (recievedMessage[0])
@@ -82,8 +90,11 @@ namespace Client
                     case '1':
                         Console.WriteLine(recievedMessage.Substring(1));
                         break;
+                    case '2':
+                        RespondToStringRequest();
+                        break;
                     case '3':
-                        RespondToKeyRequest(recievedMessage);
+                        RespondToKeyRequest();
                         break;
                 }
             }
