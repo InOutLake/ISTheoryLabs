@@ -8,6 +8,7 @@ namespace Server
 {
     public class Player
     {
+        int playerID;
         string login;
         string password;
         string race;
@@ -17,6 +18,7 @@ namespace Server
         int balance;
         bool isAdmin;
 
+        public int PlayerID { get => playerID; set => playerID = value; }
         public string Login { get => login; set => login = value; }
         public string Password { get => password; set => password = value; }
         public string Race { get => race; set => race = value; }
@@ -28,6 +30,7 @@ namespace Server
 
         public Player(string login, string password, string race, string gClass, string guild, int level, int balance, bool isAdmin)
         {
+            this.PlayerID = playerID;
             this.Login = login;
             this.Password = password;
             this.Race = race;
@@ -36,6 +39,11 @@ namespace Server
             this.Level = level;
             this.Balance = balance;
             this.IsAdmin = isAdmin;
+        }
+
+        public Player()
+        {
+
         }
 
         public string ToCSV()
@@ -47,7 +55,7 @@ namespace Server
 
         override public string ToString()
         {
-            return this.Login.PadRight(20) + this.Password.PadRight(20) + this.Race.PadRight(10) +
+            return this.PlayerID.ToString().PadRight(4) + this.Login.PadRight(20) + this.Password.PadRight(20) + this.Race.PadRight(10) +
                    this.GClass.PadRight(15) + this.Guild.PadRight(25) + this.Level.ToString().PadRight(5) +
                    this.Balance.ToString().PadRight(9) + this.IsAdmin.ToString().PadRight(5);
         }

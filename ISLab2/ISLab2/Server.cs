@@ -12,8 +12,8 @@ namespace Server
 {
     internal class Server
     {
-        string COMMANDSINFO = "\nAvailable commands:\n1 - All Players;\n2 - Player by login\n3 - Add Player\n4 - Delete Player\n0 - Save and Exit\n\nEnter action code: ";
-        string HEADER = "\nLogin".PadRight(20) + "Password".PadRight(20) + "Race".PadRight(10) +
+        string COMMANDSINFO = "\nAvailable commands:\n1 - All Players;\n2 - Player by login\n3 - Add Player\n4 - Delete Player\nESC - Save and Exit\n\nEnter action code: ";
+        string HEADER = "ID".PadRight(4) + "\nLogin".PadRight(20) + "Password".PadRight(20) + "Race".PadRight(10) +
                         "Calss".PadRight(15) + "Guild".PadRight(25) + "LVL".PadRight(5) +
                         "Balance".PadRight(9) + "Admin".PadRight(5) + "\n";
 
@@ -24,7 +24,6 @@ namespace Server
         IPEndPoint clientEP;
 
         string tmp;
-        List<Player> allPlayers;
         UdpClient serverReceiver;
         UdpClient serverSender;
 
@@ -34,8 +33,6 @@ namespace Server
 
         public Server()
         {
-            tmp = File.ReadAllLines(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\Dependencies\\config.ini")[0].Remove(0, 12);
-            allPlayers = CSVEdtior.ReadPlayers(tmp);
             serverEP = new IPEndPoint(IPADDRESS, SERVERPORT);
             clientEP = new IPEndPoint(IPADDRESS, CLIENTPORT);
             serverReceiver = new UdpClient(serverEP);
@@ -93,6 +90,7 @@ namespace Server
 
         void SendAllPlayersInfo()
         {
+            List<Player> allPlayers = DataBaseConnector.ReadPlayers();
             string stringToSend = "";
             foreach (Player p in allPlayers)
             {
@@ -102,14 +100,12 @@ namespace Server
             messageReceived = "wait";
         }
 
-        void SendPlayerInfoByLogin()
+        void SendPlayerInfoByID()
         {
-            RequestStringFromClient("Enter player's login: ");
-            string login = RecieveString();
-            foreach(Player p in allPlayers)
-            {
-                if (p.Login == login) DisplayOnClient(p.ToString());
-            }
+            RequestStringFromClient("Enter player's id: ");
+            int id = int.Parse(RecieveString());
+            Player p = DataBaseConnector.ReadPlayer(id);
+            DisplayOnClient(p.ToString());
         }
 
         void AddPlayer()
@@ -135,24 +131,26 @@ namespace Server
             bool isAdmin = RecieveString() == "y" ? true : false;
 
             Player newPlayer = new Player(login, password, race, gClass, guild, level, balance, isAdmin);
-            allPlayers.Add(newPlayer);
+            DataBaseConnector.AddPlayer(newPlayer);
             logger.Info("Added player: " + newPlayer.ToString());
 
             DisplayOnClient("Player has been successfully created!");
         }
 
-        void DeletePlayerByLogin()
+        void DeletePlayerByID()
         {
-            RequestStringFromClient("Enter player's login: ");
-            string toDelete = RecieveString();
-            if (allPlayers.RemoveAll(x => x.Login == toDelete) > 0)
+            RequestStringFromClient("Enter player's id: ");
+            int id = int.Parse(RecieveString());
+            try
             {
-                DisplayOnClient($"Player with login {toDelete} has been removed");
-                logger.Info("Removed player: " + toDelete);
+                DataBaseConnector.RemovePlayer(id);
+                DisplayOnClient($"Player with id {id} has been removed");
+                logger.Info("Removed player: " + id);
             }
-            else
+            catch (Exception ex)
             {
-                DisplayOnClient($"Player with login {toDelete} was not found");
+                Console.WriteLine(ex);
+                DisplayOnClient($"Player with login {id} was not found");
             }
         }
 
@@ -176,24 +174,20 @@ namespace Server
                         SendAllPlayersInfo();
                         break;
                     case '2':
-                        SendPlayerInfoByLogin();
+                        SendPlayerInfoByID();
                         break;
                     case '3':
                         AddPlayer();
                         break;
                     case '4':
-                        DeletePlayerByLogin();
-                        break;
-                    case '5':
-                        CSVEdtior.WritePlayers(tmp, allPlayers);
-                        logger.Info("Changes pushed");
+                        DeletePlayerByID();
                         break;
                     case '6':
                         quit = true;
+                        SendMessage("4");
                         break;
                 }
             }
-            CSVEdtior.WritePlayers(tmp, allPlayers);
             logger.Info("Shut down");
         }
     }

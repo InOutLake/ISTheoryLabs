@@ -40,7 +40,7 @@ namespace Client
         {
             byte[] data = Encoding.UTF8.GetBytes(message);
             clientSender.Send(data, serverEP);
-            logger.Info("SEND" + message);
+            logger.Info("SEND " + message);
             //Console.WriteLine($"SEND: {message}");
         }
 
@@ -48,7 +48,7 @@ namespace Client
         {
             var result = clientReceiver.Receive(ref clientEP);
             messageRecieved = Encoding.UTF8.GetString(result);
-            logger.Info("RECEIVED" + messageRecieved);
+            logger.Info("RECEIVED " + messageRecieved);
             //Console.WriteLine($"Recieved: {messageRecieved}");
             return messageRecieved;
         }
@@ -88,13 +88,16 @@ namespace Client
                 switch (recievedMessage[0])
                 {
                     case '1':
-                        Console.WriteLine(recievedMessage.Substring(1));
+                        Console.WriteLine("\n" + recievedMessage.Substring(1));
                         break;
                     case '2':
                         RespondToStringRequest();
                         break;
                     case '3':
                         RespondToKeyRequest();
+                        break;
+                    case '4':
+                        quit = true;
                         break;
                 }
             }
