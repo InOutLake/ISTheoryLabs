@@ -1,15 +1,11 @@
 ﻿using NLog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Client
 {
-    internal class Client
+    public class Client
     {
         const int CLIENTPORT = 8081;
         const int SERVERPORT = 8080;
@@ -20,7 +16,7 @@ namespace Client
         UdpClient clientReceiver;
         UdpClient clientSender;
 
-        volatile string messageRecieved;
+        public volatile string messageRecieved;
         Logger logger;
 
 
@@ -36,7 +32,7 @@ namespace Client
             logger = NLog.LogManager.GetCurrentClassLogger();
         }
 
-        void SendMessage(string message)
+        public void SendMessage(string message)
         {
             byte[] data = Encoding.UTF8.GetBytes(message);
             clientSender.Send(data, serverEP);
@@ -44,7 +40,7 @@ namespace Client
             //Console.WriteLine($"SEND: {message}");
         }
 
-        string ReceiveMessage()
+        public string ReceiveMessage()
         {
             var result = clientReceiver.Receive(ref clientEP);
             messageRecieved = Encoding.UTF8.GetString(result);
@@ -53,7 +49,7 @@ namespace Client
             return messageRecieved;
         }
 
-        void SendKey(char pressedKeyChar)
+        public void SendKey(char pressedKeyChar)
         {
             
             if (pressedKeyChar == (char)27)
@@ -66,18 +62,18 @@ namespace Client
             }
         }
 
-        void RespondToKeyRequest()
+        public void RespondToKeyRequest()
         {
             char pressedKeyChar = Console.ReadKey().KeyChar;
             SendKey(pressedKeyChar);
         }
 
-        void RespondToStringRequest()
+        public void RespondToStringRequest()
         {
             SendMessage('2' + Console.ReadLine());
         }
 
-        public async void ClientMain()
+        public void ClientMain()
         {
             Console.WriteLine("Started client...");
             

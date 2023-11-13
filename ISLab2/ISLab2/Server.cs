@@ -94,6 +94,7 @@ namespace Server
             string stringToSend = "";
             foreach (Player p in allPlayers)
             {
+                Console.WriteLine(p.ToString().Length);
                 stringToSend += p.ToString() + "\n";
             }
             DisplayOnClient(stringToSend);

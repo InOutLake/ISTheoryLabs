@@ -687,3 +687,259 @@ ESC - Save and Exit
 
 Enter action code:  | 
 2023-11-03 13:38:59.3110|Info|RECEIVED 3 | 
+2023-11-06 00:28:55.9699|Info|RECEIVED 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+ESC - Save and Exit
+
+Enter action code:  | 
+2023-11-06 00:28:56.0382|Info|RECEIVED 3 | 
+2023-11-06 02:55:10.9282|Info|RECEIVED 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+ESC - Save and Exit
+
+Enter action code:  | 
+2023-11-06 02:55:10.9620|Info|RECEIVED 3 | 
+2023-11-06 02:55:14.5386|Info|SEND 31 | 
+2023-11-06 02:55:17.2879|Info|RECEIVED 12   braveknight123      shielded4life       Human     Warrior        Knights of Valor         35   2500     False
+3   elvenmage87         arcaneMaster2022    Elf       Mage           Mystic Alliance          28   1800     False
+4   dwarvenhammer       forgePaladin        Dwarf     Paladin        Guardians of Light       42   3500     False
+5   fearsomeorc         berserkerRage       Orc       Barbarian      Bloodrage Clan           30   2000     False
+6   adminmaster         adminPass123        Human     Administrator  Admins United            50   10000    True 
+7   player1             pass123             Elf       Ranger         Forest Guardians         20   1500     False
+8   sorcererwizard      magicPower99        Human     Wizard         Order of the Arcane      38   2800     False
+9   steelsmith76        forgeMaster         Dwarf     Blacksmith     Hammerfall Clan          45   4000     False
+10  shadowrogue         stealthyNinja       Human     Rogue          Shadow Syndicate         32   2200     False
+11  fierydragon         dragonlord123       Dragon    Dragonlord     Flame Reavers            55   8000     False
+12  naturedruid         earthpower234       Elf       Druid          Nature's Embrace         27   1700     False
+13  icequeenFrost       iceMagic456         Human     Sorcerer       Chillblades Coven        40   3200     False
+14  mightyminotaur      axeCrusher          Minotaur  Warrior        Minotaur's Might         36   2600     False
+15  undeadwarlock       darksummoner789     Undead    Warlock        Shadow Legion            48   6000     False
+16  thechosenone        destinyCalls12      Human     Hero           Heroes of Destiny        60   12000    False
+17  moshnetravnyh       pswdnotforuse       Undead    Necromancer    Grip from the rip        0    0        False
+ | 
+2023-11-06 02:55:17.2879|Info|RECEIVED 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+ESC - Save and Exit
+
+Enter action code:  | 
+2023-11-06 02:55:17.2879|Info|RECEIVED 3 | 
+2023-11-06 02:55:17.2879|Info|SEND 3 | 
+2023-11-06 02:55:17.2879|Info|RECEIVED 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+ESC - Save and Exit
+
+Enter action code:  | 
+2023-11-06 02:55:17.2879|Info|RECEIVED 3 | 
+2023-11-06 02:56:05.4493|Info|RECEIVED 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+ESC - Save and Exit
+
+Enter action code:  | 
+2023-11-06 02:56:05.4876|Info|RECEIVED 3 | 
+2023-11-06 12:30:02.1904|Info|RECEIVED 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+ESC - Save and Exit
+
+Enter action code:  | 
+2023-11-06 12:30:02.2297|Info|RECEIVED 3 | 
+2023-11-06 12:30:12.3913|Info|SEND 31 | 
+2023-11-06 12:30:15.0130|Info|RECEIVED 12   braveknight123      shielded4life       Human     Warrior        Knights of Valor         35   2500     False
+3   elvenmage87         arcaneMaster2022    Elf       Mage           Mystic Alliance          28   1800     False
+4   dwarvenhammer       forgePaladin        Dwarf     Paladin        Guardians of Light       42   3500     False
+5   fearsomeorc         berserkerRage       Orc       Barbarian      Bloodrage Clan           30   2000     False
+6   adminmaster         adminPass123        Human     Administrator  Admins United            50   10000    True 
+7   player1             pass123             Elf       Ranger         Forest Guardians         20   1500     False
+8   sorcererwizard      magicPower99        Human     Wizard         Order of the Arcane      38   2800     False
+9   steelsmith76        forgeMaster         Dwarf     Blacksmith     Hammerfall Clan          45   4000     False
+10  shadowrogue         stealthyNinja       Human     Rogue          Shadow Syndicate         32   2200     False
+11  fierydragon         dragonlord123       Dragon    Dragonlord     Flame Reavers            55   8000     False
+12  naturedruid         earthpower234       Elf       Druid          Nature's Embrace         27   1700     False
+13  icequeenFrost       iceMagic456         Human     Sorcerer       Chillblades Coven        40   3200     False
+14  mightyminotaur      axeCrusher          Minotaur  Warrior        Minotaur's Might         36   2600     False
+15  undeadwarlock       darksummoner789     Undead    Warlock        Shadow Legion            48   6000     False
+16  thechosenone        destinyCalls12      Human     Hero           Heroes of Destiny        60   12000    False
+17  moshnetravnyh       pswdnotforuse       Undead    Necromancer    Grip from the rip        0    0        False
+ | 
+2023-11-06 12:30:15.0130|Info|RECEIVED 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+ESC - Save and Exit
+
+Enter action code:  | 
+2023-11-06 12:30:15.0130|Info|RECEIVED 3 | 
+2023-11-06 12:30:20.0357|Info|SEND 32 | 
+2023-11-06 12:30:20.0357|Info|RECEIVED 1Enter player's id:  | 
+2023-11-06 12:30:20.0357|Info|RECEIVED 2 | 
+2023-11-06 12:30:24.2480|Info|SEND 23 | 
+2023-11-06 12:30:24.2933|Info|RECEIVED 13   elvenmage87         arcaneMaster2022    Elf       Mage           Mystic Alliance          28   1800     False | 
+2023-11-06 12:30:24.2933|Info|RECEIVED 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+ESC - Save and Exit
+
+Enter action code:  | 
+2023-11-06 12:30:24.2933|Info|RECEIVED 3 | 
+2023-11-06 12:30:38.5917|Info|SEND 34 | 
+2023-11-06 12:30:38.5917|Info|RECEIVED 1Enter player's id:  | 
+2023-11-06 12:30:38.5917|Info|RECEIVED 2 | 
+2023-11-06 12:33:18.9335|Info|RECEIVED 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+ESC - Save and Exit
+
+Enter action code:  | 
+2023-11-06 12:33:18.9816|Info|RECEIVED 3 | 
+2023-11-06 12:33:23.2866|Info|SEND 31 | 
+2023-11-06 12:33:26.0064|Info|RECEIVED 12   braveknight123      shielded4life       Human     Warrior        Knights of Valor         35   2500     False
+3   elvenmage87         arcaneMaster2022    Elf       Mage           Mystic Alliance          28   1800     False
+4   dwarvenhammer       forgePaladin        Dwarf     Paladin        Guardians of Light       42   3500     False
+5   fearsomeorc         berserkerRage       Orc       Barbarian      Bloodrage Clan           30   2000     False
+6   adminmaster         adminPass123        Human     Administrator  Admins United            50   10000    True 
+7   player1             pass123             Elf       Ranger         Forest Guardians         20   1500     False
+8   sorcererwizard      magicPower99        Human     Wizard         Order of the Arcane      38   2800     False
+9   steelsmith76        forgeMaster         Dwarf     Blacksmith     Hammerfall Clan          45   4000     False
+10  shadowrogue         stealthyNinja       Human     Rogue          Shadow Syndicate         32   2200     False
+11  fierydragon         dragonlord123       Dragon    Dragonlord     Flame Reavers            55   8000     False
+12  naturedruid         earthpower234       Elf       Druid          Nature's Embrace         27   1700     False
+13  icequeenFrost       iceMagic456         Human     Sorcerer       Chillblades Coven        40   3200     False
+14  mightyminotaur      axeCrusher          Minotaur  Warrior        Minotaur's Might         36   2600     False
+15  undeadwarlock       darksummoner789     Undead    Warlock        Shadow Legion            48   6000     False
+16  thechosenone        destinyCalls12      Human     Hero           Heroes of Destiny        60   12000    False
+17  moshnetravnyh       pswdnotforuse       Undead    Necromancer    Grip from the rip        0    0        False
+ | 
+2023-11-06 12:33:26.0064|Info|RECEIVED 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+ESC - Save and Exit
+
+Enter action code:  | 
+2023-11-06 12:33:26.0064|Info|RECEIVED 3 | 
+2023-11-06 12:34:53.1687|Info|RECEIVED 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+ESC - Save and Exit
+
+Enter action code:  | 
+2023-11-06 12:34:53.2096|Info|RECEIVED 3 | 
+2023-11-06 12:34:56.4518|Info|SEND 34 | 
+2023-11-06 12:34:56.4649|Info|RECEIVED 1Enter player's id:  | 
+2023-11-06 12:34:56.4649|Info|RECEIVED 2 | 
+2023-11-06 12:35:01.1331|Info|SEND 24 | 
+2023-11-06 12:35:03.8997|Info|RECEIVED 1Player with id 4 has been removed | 
+2023-11-06 12:35:03.8997|Info|RECEIVED 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+ESC - Save and Exit
+
+Enter action code:  | 
+2023-11-06 12:35:03.8997|Info|RECEIVED 3 | 
+2023-11-06 12:35:06.9541|Info|SEND 31 | 
+2023-11-06 12:35:06.9615|Info|RECEIVED 12   braveknight123      shielded4life       Human     Warrior        Knights of Valor         35   2500     False
+3   elvenmage87         arcaneMaster2022    Elf       Mage           Mystic Alliance          28   1800     False
+5   fearsomeorc         berserkerRage       Orc       Barbarian      Bloodrage Clan           30   2000     False
+6   adminmaster         adminPass123        Human     Administrator  Admins United            50   10000    True 
+7   player1             pass123             Elf       Ranger         Forest Guardians         20   1500     False
+8   sorcererwizard      magicPower99        Human     Wizard         Order of the Arcane      38   2800     False
+9   steelsmith76        forgeMaster         Dwarf     Blacksmith     Hammerfall Clan          45   4000     False
+10  shadowrogue         stealthyNinja       Human     Rogue          Shadow Syndicate         32   2200     False
+11  fierydragon         dragonlord123       Dragon    Dragonlord     Flame Reavers            55   8000     False
+12  naturedruid         earthpower234       Elf       Druid          Nature's Embrace         27   1700     False
+13  icequeenFrost       iceMagic456         Human     Sorcerer       Chillblades Coven        40   3200     False
+14  mightyminotaur      axeCrusher          Minotaur  Warrior        Minotaur's Might         36   2600     False
+15  undeadwarlock       darksummoner789     Undead    Warlock        Shadow Legion            48   6000     False
+16  thechosenone        destinyCalls12      Human     Hero           Heroes of Destiny        60   12000    False
+17  moshnetravnyh       pswdnotforuse       Undead    Necromancer    Grip from the rip        0    0        False
+ | 
+2023-11-06 12:35:06.9615|Info|RECEIVED 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+ESC - Save and Exit
+
+Enter action code:  | 
+2023-11-06 12:35:06.9615|Info|RECEIVED 3 | 
+2023-11-06 12:35:10.9221|Info|SEND 36 | 
+2023-11-06 12:35:10.9221|Info|RECEIVED 4 | 
+2023-11-06 12:35:27.5908|Info|RECEIVED 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+ESC - Save and Exit
+
+Enter action code:  | 
+2023-11-06 12:35:27.7018|Info|RECEIVED 3 | 
+2023-11-06 12:35:29.2160|Info|SEND 31 | 
+2023-11-06 12:35:31.7853|Info|RECEIVED 12   braveknight123      shielded4life       Human     Warrior        Knights of Valor         35   2500     False
+3   elvenmage87         arcaneMaster2022    Elf       Mage           Mystic Alliance          28   1800     False
+5   fearsomeorc         berserkerRage       Orc       Barbarian      Bloodrage Clan           30   2000     False
+6   adminmaster         adminPass123        Human     Administrator  Admins United            50   10000    True 
+7   player1             pass123             Elf       Ranger         Forest Guardians         20   1500     False
+8   sorcererwizard      magicPower99        Human     Wizard         Order of the Arcane      38   2800     False
+9   steelsmith76        forgeMaster         Dwarf     Blacksmith     Hammerfall Clan          45   4000     False
+10  shadowrogue         stealthyNinja       Human     Rogue          Shadow Syndicate         32   2200     False
+11  fierydragon         dragonlord123       Dragon    Dragonlord     Flame Reavers            55   8000     False
+12  naturedruid         earthpower234       Elf       Druid          Nature's Embrace         27   1700     False
+13  icequeenFrost       iceMagic456         Human     Sorcerer       Chillblades Coven        40   3200     False
+14  mightyminotaur      axeCrusher          Minotaur  Warrior        Minotaur's Might         36   2600     False
+15  undeadwarlock       darksummoner789     Undead    Warlock        Shadow Legion            48   6000     False
+16  thechosenone        destinyCalls12      Human     Hero           Heroes of Destiny        60   12000    False
+17  moshnetravnyh       pswdnotforuse       Undead    Necromancer    Grip from the rip        0    0        False
+ | 
+2023-11-06 12:35:31.7853|Info|RECEIVED 1
+Available commands:
+1 - All Players;
+2 - Player by login
+3 - Add Player
+4 - Delete Player
+ESC - Save and Exit
+
+Enter action code:  | 
+2023-11-06 12:35:31.7853|Info|RECEIVED 3 | 
+2023-11-06 12:35:34.3100|Info|SEND 36 | 
+2023-11-06 12:35:34.3100|Info|RECEIVED 4 | 

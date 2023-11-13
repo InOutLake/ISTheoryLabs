@@ -41,6 +41,19 @@ namespace Server
             this.IsAdmin = isAdmin;
         }
 
+        public Player(int id, string login, string password, string race, string gClass, string guild, int level, int balance, bool isAdmin)
+        {
+            this.PlayerID = id;
+            this.Login = login;
+            this.Password = password;
+            this.Race = race;
+            this.GClass = gClass;
+            this.Guild = guild;
+            this.Level = level;
+            this.Balance = balance;
+            this.IsAdmin = isAdmin;
+        }
+
         public Player()
         {
 
